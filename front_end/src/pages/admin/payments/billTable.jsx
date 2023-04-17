@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Breadcrumb from "../../../components/Breadcrumb.jsx";
 import {BiSearch} from "react-icons/bi";
-import moment from "moment";
 import {AiFillEye} from "react-icons/ai";
 import {getBillById, getListBill, getListProductByBillId} from "../../../services/apiService.jsx";
 import BillModal from "../../../components/admin/BillModal.jsx";
