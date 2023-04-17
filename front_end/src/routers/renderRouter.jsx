@@ -2,7 +2,7 @@ import React, {Suspense} from 'react';
 import PrivateRouter from "./privateRouter.jsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 
-const RenderRouter = (routers) => {
+const RenderRouter = (routers, setOpen) => {
     return (
         routers.map(({page: Page, path, isPublic, ...rest}) => {
             return (
@@ -10,11 +10,11 @@ const RenderRouter = (routers) => {
                     !isPublic ?
                         <PrivateRouter>
                             <Suspense fallback={<div>Loading...</div>}>
-                                <Page/>
+                                <Page setOpen={setOpen}/>
                             </Suspense>
                         </PrivateRouter> :
                         <Suspense fallback={<div>Loading...</div>}>
-                            <Page/>
+                            <Page setOpen={setOpen}/>
                         </Suspense>}
                        path={path}
                        key={path}

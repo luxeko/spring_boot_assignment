@@ -18,7 +18,7 @@ const BillModal = ({isOpen, setOpenModal, products}) => {
                         <div className={`px-12`}>
                             asdsa
                         </div>
-                        <div className={`overflow-y-auto h-[40rem] px-12`}>
+                        <div className={`overflow-y-auto h-[20rem] px-12`}>
                             {
                                 products.map((item, index) => {
                                     return (

@@ -90,9 +90,6 @@ const BillTable = () => {
                                 Customer Email
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Created At
-                            </th>
-                            <th scope="col" className="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -129,9 +126,6 @@ const BillTable = () => {
                                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {bill.customerEmail}
                                         </th>
-                                        <td className="px-6 py-4">
-                                            {bill.createdAt ? moment(bill.createdAt).format("DD-MM-YYYY HH:mm:ss") : ""}
-                                        </td>
                                         <td className={`px-6 py-4`}>
                                             <div onClick={() => handleOpenModal(bill.id)}
                                                  className={`cursor-pointer hover:bg-primaryColor bg-primaryColor_hover inline-flex items-center justify-center text-center text-white duration-300 p-2 rounded`}>

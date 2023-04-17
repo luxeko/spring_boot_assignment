@@ -20,6 +20,26 @@ const postCreateProduct = (productCode, productName, price, quantity, descriptio
         "createdAt": createdAt
     })
 }
+const postCreateBill = (customerName, customerAddress, customerPhone, customerEmail, total, billCode, createdAt) => {
+    const data = {
+        "id": "",
+        "customerName": customerName,
+        "customerAddress": customerAddress,
+        "customerPhone": customerPhone,
+        "customerEmail": customerEmail,
+        "total": +total,
+        "billCode": billCode,
+        "createdAt": createdAt
+    }
+    return instance.post(`bills`, data)
+}
+const postCreateBillProducts = (billId, productId) => {
+    return instance.post(`/bills/bill-products`, {
+        "id": "",
+        "productId": productId,
+        "billId": billId
+    })
+}
 const putUpdateProduct = (id, productCode, productName, price, quantity, description, createdAt) => {
     const data = {
         "id": +id,
@@ -42,4 +62,15 @@ const getListProductByBillId = (id) => {
 const getBillById = (id) => {
 
 }
-export {getListProduct, getProductById, postCreateProduct, putUpdateProduct, deleteProduct, getListBill, getListProductByBillId, getBillById}
+export {
+    getListProduct,
+    getProductById,
+    postCreateProduct,
+    putUpdateProduct,
+    deleteProduct,
+    getListBill,
+    getListProductByBillId,
+    getBillById,
+    postCreateBill,
+    postCreateBillProducts
+}

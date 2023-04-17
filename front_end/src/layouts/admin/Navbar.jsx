@@ -32,10 +32,8 @@ const Navbar = () => {
                                          ' md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent' : 'text-gray-900  hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent') + `block py-2 pl-3 pr-4 rounded`}><IoNewspaperOutline className={`w-6 h-6`}/></NavLink>
                         </li>
                         <li>
-                            <NavLink to={`/`}
-                                     className={(navData) => (navData.isActive ? 'text-white bg-blue-700 font-semibold' +
-                                         ' md:bg-transparent' +
-                                         ' md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent' : 'text-gray-900  hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent') + `block py-2 pl-3 pr-4 rounded`}><BsShop className={`w-6 h-6`}/></NavLink>
+                            <Link to={`/`}
+                                     className={`relative md:bg-transparent md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent block py-2`}><BsShop className={`w-6 h-6`}/></Link>
                         </li>
                     </ul>
                 </div>

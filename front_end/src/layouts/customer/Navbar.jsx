@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, NavLink} from "react-router-dom";
 import {HiOutlineShoppingCart} from "react-icons/hi";
 import {FiShoppingBag} from "react-icons/fi";
 import {RiDashboardLine, RiMenu2Line} from "react-icons/ri";
+import {useSelector} from "react-redux";
 
-const Navbar = () => {
+const Navbar = (props) => {
+    const [cartCount, setCartCount] = useState(0)
+    const shop = useSelector(state => state.cart)
+    useEffect(() => {
+        let count = 0;
+        shop.cart.forEach(item => {
+            count += item.qty
+        })
+        setCartCount(count)
+    }, [shop.cart, cartCount])
     return (
         <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 shadow-lg">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -28,18 +38,22 @@ const Navbar = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to={`/cart`}
-                                     className={(navData) => (navData.isActive ? 'text-white bg-blue-700' +
-                                         ' md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent' : 'text-gray-900  hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent') + `block py-2`}>
+                            <button type={`button`} className={
+                                         'relative md:bg-transparent md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent block py-2'}
+                            onClick={() => props.setOpen(true)}>
                                 <HiOutlineShoppingCart className={`w-6 h-6`}/>
-                            </NavLink>
+                                {
+                                    cartCount !== 0
+                                        ? <span className={`flex justify-center items-center absolute -right-2 -top-2 border-2 border-whiteColor bg-dangerColor-default_2 text-whiteColor rounded-full text-xs font-semiBold w-5 h-5`}>{cartCount}</span>
+                                        : <span></span>
+                                }
+                            </button>
                         </li>
                         <li>
-                            <NavLink to={`/admin/v1`}
-                                     className={(navData) => (navData.isActive ? 'text-white bg-blue-700' +
-                                         ' md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent' : 'text-gray-900  hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent') + `block py-2`}>
+                            <Link to={`/admin/v1`}
+                                     className={`relative md:bg-transparent md:p-0 md:dark:text-blue-500 dark:bg-blue-600 md:dark:bg-transparent text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent block py-2`}>
                                 <RiDashboardLine className={`w-6 h-6`}/>
-                            </NavLink>
+                            </Link>
                         </li>
                     </ul>
                 </div>

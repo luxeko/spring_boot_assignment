@@ -1,11 +1,11 @@
 import React from 'react';
-import Navbar from "../../layouts/admin/Navbar.jsx";
+import Navbar from "../../layouts/customer/Navbar.jsx";
 import {Outlet} from "react-router-dom";
 
-export const HomePage = () => {
+export const HomePage = (props) => {
     return (
         <>
-            <Navbar/>
+            <Navbar setOpen={props.setOpen}/>
             <div className={`main-content`}>
                 <Outlet/>
             </div>
