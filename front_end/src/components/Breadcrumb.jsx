@@ -12,7 +12,7 @@ const Breadcrumb = ({data}) => {
                     {
                         data.map((item, index) => {
                             return (
-                                <li className={`${index === 0 ? 'inline-flex' : 'flex'} items-center`}>
+                                <li key={`breadcrumb-${index}`} className={`${index === 0 ? 'inline-flex' : 'flex'} items-center`}>
                                     {
                                         index === 0
                                             ? <Link to={item.path}

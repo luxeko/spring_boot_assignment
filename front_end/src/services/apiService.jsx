@@ -1,4 +1,5 @@
 import instance from "../configs/axiosConfig.jsx";
+import {data} from "autoprefixer";
 
 const getListProduct = (keyword) => {
     return instance.get(`products?keyword=${keyword}`)
@@ -67,6 +68,20 @@ const getListBill = (keyword) => {
 const getListProductByBillId = (id) => {
     return instance.get(`bills/${id}`)
 }
+const getAllProductThumbnail = () => {
+    return instance.get(`products/thumbnail`)
+}
+const postCreateProductThumbnail = (data) => {
+    return instance.get(`products/thumbnail/upload?`, data, {
+        headers: {
+            'Content-Type': `multipart/form-data; boundary=${data._boundary}`,}
+
+    }).then(res => {
+        console.log(res)
+    }).catch(er => {
+        console.log(er)
+    })
+}
 export {
     getListProduct,
     getProductById,
@@ -77,5 +92,6 @@ export {
     getListProductByBillId,
     postCreateBill,
     postCreateBillProducts,
-    postUpdateQuantityProductAfterPurchase
+    postUpdateQuantityProductAfterPurchase,
+    getAllProductThumbnail
 }

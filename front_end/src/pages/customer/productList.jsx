@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {BsBoxSeam} from "react-icons/bs"
-import {getListProduct} from "../../services/apiService.jsx";
+import {getAllProductThumbnail, getListProduct} from "../../services/apiService.jsx";
 import {TbShoppingCartPlus} from "react-icons/tb";
 import imageTest from "../../assets/lazycat_code-01.png"
 import {doAddToCart} from '../../redux/action/cartAction.jsx'
@@ -11,20 +11,32 @@ import Breadcrumb from "../../components/Breadcrumb.jsx";
 const ProductList = (props) => {
     const dispatch = useDispatch()
     const [products, setProducts] = useState([])
+    const [thumbnails, setThumbnails] = useState([])
     useEffect(() => {
         const fetchData = async () => {
-            await handleGetListProduct();
+            await handleGetListProduct()
+            await handleGetListThumbnail()
         }
         fetchData();
     }, [])
+
     const handleAddToCart = (data) => {
         dispatch(doAddToCart(data))
         props.setOpen(true)
     }
+
     const handleGetListProduct = async () => {
         const res = await getListProduct("")
         if (res && res.code === '200') {
             setProducts(res.data)
+        } else {
+            setProducts([])
+        }
+    }
+    const handleGetListThumbnail = async () => {
+        const res = await getAllProductThumbnail()
+        if (res && res.code === '200') {
+            setThumbnails(res.data)
         } else {
             setProducts([])
         }
@@ -52,7 +64,9 @@ const ProductList = (props) => {
                     {products.map((product) => (
                         <div key={product.id} className={`group shadow-lg rounded-lg py-3 relative`}>
                             {
-                                product.quantity <= 0 ? <div className={`absolute top-2 right-2 bg-dangerColor-default_2 text-white font-semibold py-1 px-2 rounded-lg z-10 capitalize  italic`}>sold out</div> : <></>
+                                product.quantity <= 0 ? <div
+                                    className={`absolute top-2 right-2 bg-dangerColor-default_2 text-white font-semibold py-1 px-2 rounded-lg z-10 capitalize  italic`}>sold
+                                    out</div> : <></>
                             }
 
                             <div className={product.quantity <= 0 ? 'opacity-50' : ''}>
@@ -67,8 +81,10 @@ const ProductList = (props) => {
                                 <h3 className="mt-4 text-xl font-semibold text-gray-700 px-5 pt-4 pb-2">{product.productName}</h3>
                                 <div className={`flex items-end justify-between mt-2  px-5`}>
                                     <div>
-                                        <span className="text-xl leading-4 font-semibold text-lime-700">${product.price}</span>
-                                        <div className={`text-sm mt-2 flex items-center ${product.quantity <= 0 ? 'text-dangerColor-default_2' : ''}`}>
+                                        <span
+                                            className="text-xl leading-4 font-semibold text-lime-700">${product.price}</span>
+                                        <div
+                                            className={`text-sm mt-2 flex items-center ${product.quantity <= 0 ? 'text-dangerColor-default_2' : ''}`}>
                                             <span className={`mr-2`}><BsBoxSeam/></span>
                                             <span className={`font-bold`}>{product.quantity}</span>
                                         </div>
@@ -81,6 +97,17 @@ const ProductList = (props) => {
                         </div>
                     ))}
                 </div>
+            </div>
+            <div>
+                {
+                    thumbnails.map((item, index) => {
+                        return (
+                            <div key={`thumbnail-${index}`}>
+                                <img alt={item.thumbnailName} src={item.thumbnailUrl}/>
+                            </div>
+                        )
+                    })
+                }
             </div>
         </>
     );
