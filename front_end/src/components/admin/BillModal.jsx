@@ -62,9 +62,8 @@ const BillModal = ({isOpen, setOpenModal, bill, products}) => {
                                     <span className={``}>{bill.customerEmail}</span>
                                 </div>
                             </div>
-
                         </div>
-                        <div className={`overflow-y-auto h-[30rem] px-12`}>
+                        <div className={`overflow-y-auto h-[20rem] px-12`}>
                             <table className={`border-collapse w-full`}>
                                 <tbody className={`table-row-group align-middle`}>
                                 <tr className={`cart_subtotal table-row border-b-[1px] border-borderColor`}>

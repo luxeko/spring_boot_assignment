@@ -67,6 +67,7 @@ public class ProductController {
         responseDTO.setStatus("SUCCESS");
         responseDTO.setMessage("Create product successfully");
         responseDTO.setData(product);
+     
         return ResponseEntity.ok(responseDTO);
     }
     @PutMapping(value = "")

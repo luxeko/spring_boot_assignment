@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb.jsx";
+import imageTest from "../../assets/lazycat_code-01.png"
 
 const ProductTable = () => {
     const [products, setProducts] = useState([])
@@ -73,7 +74,7 @@ const ProductTable = () => {
                 <div className={`flex items-center justify-between mb-10`}>
                     <div className={`inline-block`}>
                         <Link to={`/admin/v1/products/create`}
-                              className={`bg-green-600 px-4 py-2 uppercase font-semibold text-white flex items-center`}><FiPlus
+                              className={`rounded-lg bg-green-600 px-4 py-2 uppercase font-semibold text-white flex items-center`}><FiPlus
                             className={`mr-2`}/> Add product</Link>
                     </div>
                     <form className={`w-96`}>
@@ -94,8 +95,11 @@ const ProductTable = () => {
                         <thead
                             className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
-                            <th scope="col" className="px-6 py-3">
+                            <th scope="col" className="px-6 w-2 py-3">
                                 #
+                            </th>
+                            <th scope="col" className="w-44 px-6 py-3">
+                                Product Image
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Product Code
@@ -127,23 +131,26 @@ const ProductTable = () => {
                                     <tr key={`product-${index}`}
                                         className="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                                         <td scope="row"
-                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-6">
+                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white w-2">
                                             {index + 1}
+                                        </td>
+                                        <td className="px-6 py-4 w-44">
+                                            <img alt={``} className={`aspect-square object-cover`} src={imageTest}/>
                                         </td>
                                         <td className="px-6 py-4">
                                             {product.productCode}
                                         </td>
-                                        <th scope="row"
+                                        <td scope="row"
                                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {product.productName}
-                                        </th>
+                                        </td>
                                         <td className="px-6 py-4 text-lime-700 font-semibold">
                                             ${product.price}
                                         </td>
                                         <td className="px-6 py-4 font-semibold">
                                             {product.quantity}
                                         </td>
-                                        <td className="w-72 px-6 py-4">
+                                        <td className="w-56 px-6 py-4">
                                             {product.description}
                                         </td>
                                         <td className="px-6 py-4">

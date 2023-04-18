@@ -72,7 +72,16 @@ public class BillController {
             BillEntity bill = op.get();
 
             // gán thông các dữ liệu cần thiết từ bill vào billDTO
-            billDTO = new BillDTO(bill.getId(), bill.getCustomerName(), bill.getCustomerAddress(), bill.getCustomerPhone(), bill.getCustomerEmail(), bill.getBillCode(), bill.getTotal(), bill.getSubtotal(), bill.getCreatedAt(), listProduct);
+            billDTO = new BillDTO(bill.getId(),
+                    bill.getCustomerName(),
+                    bill.getCustomerAddress(),
+                    bill.getCustomerPhone(),
+                    bill.getCustomerEmail(),
+                    bill.getBillCode(),
+                    bill.getTotal(),
+                    bill.getSubtotal(),
+                    bill.getCreatedAt(),
+                    listProduct);
             responseDTO.setCode("200");
             responseDTO.setStatus("SUCCESS");
             responseDTO.setMessage("Create bill successfully");
@@ -95,10 +104,10 @@ public class BillController {
     @PostMapping(value = "/bill-products")
     public ResponseEntity<?> createBillProducts(@RequestBody BillProductEntity billProductEntity) {
         ResponseDTO responseDTO = new ResponseDTO();
-//        billImplService.saveBillProducts(billProductEntity);
-//        responseDTO.setCode("200");
-//        responseDTO.setStatus("SUCCESS");
-//        responseDTO.setMessage("Create bill products successfully");
+        billImplService.saveBillProducts(billProductEntity);
+        responseDTO.setCode("200");
+        responseDTO.setStatus("SUCCESS");
+        responseDTO.setMessage("Create bill products successfully");
         responseDTO.setData(billProductEntity);
         return ResponseEntity.ok(responseDTO);
     }
