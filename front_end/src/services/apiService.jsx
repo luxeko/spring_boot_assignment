@@ -10,16 +10,30 @@ const getProductById = (id) => {
 const deleteProduct = (id) => {
     return instance.delete(`products?id=${id}`)
 }
-const postCreateProduct = (productCode, productName, price, quantity, description, createdAt) => {
+const postCreateProduct = (productCode, productName, productImage, price, quantity, description, createdAt) => {
     return instance.post(`products`, {
         "id": "",
         "productCode": productCode,
         "productName": productName,
+        "productImage": productImage,
         "price": +price,
         "quantity": +quantity,
         "description": description,
         "createdAt": createdAt
     })
+}
+const putUpdateProduct = (id, productCode, productName, productImage, price, quantity, description, createdAt) => {
+    const data = {
+        "id": +id,
+        "productCode": productCode,
+        "productName": productName,
+        "productImage": productImage,
+        "price": +price,
+        "quantity": +quantity,
+        "description": description,
+        "createdAt": createdAt
+    }
+    return instance.put(`products?id=${id}`, data)
 }
 const postCreateBill = (customerName, customerAddress, customerPhone, customerEmail, total, subtotal, billCode, createdAt) => {
     const data = {
@@ -49,19 +63,7 @@ const postUpdateQuantityProductAfterPurchase = (newQuantity, productId) => {
         "quantity": newQuantity
     })
 }
-const putUpdateProduct = (id, productCode, productName, price, quantity, description, createdAt) => {
-    const data = {
-        "id": +id,
-        "productCode": productCode,
-        "productName": productName,
-        "price": +price,
-        "quantity": +quantity,
-        "description": description,
-        "createdAt": createdAt
-    }
-    console.log(data)
-    return instance.put(`products?id=${id}`, data)
-}
+
 const getListBill = (keyword) => {
     return instance.get(`bills?keyword=${keyword}`)
 }
@@ -71,15 +73,14 @@ const getListProductByBillId = (id) => {
 const getAllProductThumbnail = () => {
     return instance.get(`products/thumbnail`)
 }
+const getThumbnailByProductId = (id) => {
+    return instance.get(`products/thumbnail/${id}`)
+}
 const postCreateProductThumbnail = (data) => {
-    return instance.get(`products/thumbnail/upload?`, data, {
+    return instance.post(`products/thumbnail/upload`, data, {
         headers: {
-            'Content-Type': `multipart/form-data; boundary=${data._boundary}`,}
-
-    }).then(res => {
-        console.log(res)
-    }).catch(er => {
-        console.log(er)
+            'Content-Type': `multipart/form-data; boundary=${data._boundary}`
+        }
     })
 }
 export {
@@ -93,5 +94,7 @@ export {
     postCreateBill,
     postCreateBillProducts,
     postUpdateQuantityProductAfterPurchase,
-    getAllProductThumbnail
+    getAllProductThumbnail,
+    postCreateProductThumbnail,
+    getThumbnailByProductId
 }

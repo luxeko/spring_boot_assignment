@@ -95,7 +95,7 @@ const Cart = (props) => {
                                                                        className={`cursor-pointer group/image max-w-[80px] mr-3`}>
                                                                         <img
                                                                             alt={``}
-                                                                            src={testImg}
+                                                                            src={item.productImage}
                                                                             className={`rounded-[10px] max-w-[80px]`}/>
                                                                     </a>
                                                                     <div className={`w-full`}>

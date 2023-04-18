@@ -135,7 +135,7 @@ const ProductTable = () => {
                                             {index + 1}
                                         </td>
                                         <td className="px-6 py-4 w-44">
-                                            <img alt={``} className={`aspect-square object-cover`} src={imageTest}/>
+                                            <img alt={product.productName} className={`aspect-square object-cover`} src={product.productImage}/>
                                         </td>
                                         <td className="px-6 py-4">
                                             {product.productCode}

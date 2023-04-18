@@ -73,8 +73,8 @@ const ProductList = (props) => {
                                 <div
                                     className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
                                     <img
-                                        src={imageTest}
-                                        alt={product.imageAlt}
+                                        src={product.productImage}
+                                        alt={product.name}
                                         className={`h-full w-full object-cover object-center duration-300  ${product.quantity <= 0 ? '' : 'group-hover:opacity-75'}`}
                                     />
                                 </div>
@@ -97,17 +97,6 @@ const ProductList = (props) => {
                         </div>
                     ))}
                 </div>
-            </div>
-            <div>
-                {
-                    thumbnails.map((item, index) => {
-                        return (
-                            <div key={`thumbnail-${index}`}>
-                                <img alt={item.thumbnailName} src={item.thumbnailUrl}/>
-                            </div>
-                        )
-                    })
-                }
             </div>
         </>
     );
