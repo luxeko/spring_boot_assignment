@@ -3,7 +3,8 @@
     + npm version >= 9.3.1
     + MySQL
     
-- START: 
+- START:
+
   With project front_end:
     1. Open terminal run: npm install --global yarn (You can skip this part if you have installed it before)
     2. Run: yarn 
