@@ -35,4 +35,18 @@ public class ProductImplService implements IProductService {
     public void deleteProduct(ProductEntity product) {
         productRepository.delete(product);
     }
+
+    @Override
+    public boolean updateQuantity(int quantity, int id) {
+        Optional<ProductEntity> op = productRepository.findById(id);
+        if (op.isPresent()) {
+            ProductEntity product = op.get();
+            if (product.getQuantity() >= quantity) {
+                productRepository.updateQuantityById(quantity, id);
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
 }

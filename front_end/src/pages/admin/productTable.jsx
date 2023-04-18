@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react';
 import {FiPlus} from "react-icons/fi";
 import {FaPencilAlt, FaTrashAlt} from "react-icons/fa"
 import {BiSearch} from "react-icons/bi"
-import {deleteProduct, getListProduct} from "../../../services/apiService.jsx";
+import {deleteProduct, getListProduct} from "../../services/apiService.jsx";
 import moment from "moment";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import {toast} from "react-toastify";
 import {Link} from "react-router-dom";
-import Breadcrumb from "../../../components/Breadcrumb.jsx";
+import Breadcrumb from "../../components/Breadcrumb.jsx";
 
 const ProductTable = () => {
     const [products, setProducts] = useState([])
@@ -53,11 +53,20 @@ const ProductTable = () => {
     const handleSearchProduct = (e) => {
         setKeyword(e.target.value)
     }
-
+    const dataBreadcumb = [
+        {
+            name: "Home",
+            path: "/admin/v1"
+        },
+        {
+            name: "Products",
+            path: ""
+        }
+    ]
     return (
         <>
             <div className={`max-w-screen-xl mx-auto lg:max-w-7xl sm:pt-6 pt-6`}>
-                <Breadcrumb/>
+                <Breadcrumb data={dataBreadcumb}/>
                 <h1 className={`font-semibold text-3xl sm:pt-6 pt-6`}>List product</h1>
             </div>
             <div className={`max-w-screen-xl mx-auto py-12 sm:py-12 lg:max-w-7xl`}>

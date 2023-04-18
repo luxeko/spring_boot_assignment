@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import Breadcrumb from "../../../components/Breadcrumb.jsx";
+import Breadcrumb from "../../components/Breadcrumb.jsx";
 import {BiSearch} from "react-icons/bi";
 import {AiFillEye} from "react-icons/ai";
-import {getBillById, getListBill, getListProductByBillId} from "../../../services/apiService.jsx";
-import BillModal from "../../../components/admin/BillModal.jsx";
+import {getListBill, getListProductByBillId} from "../../services/apiService.jsx";
+import BillModal from "../../components/admin/BillModal.jsx";
+import moment from "moment";
 
 const BillTable = () => {
     const [bills, setBills] = useState([])
     const [keyword, setKeyword] = useState("")
     const [openModal, setOpenModal] = useState(false)
-    const [billProducts, setBillProducts] = useState([])
     const [products, setProducts] = useState([])
     const [bill, setBill] = useState([])
     useEffect(() => {
@@ -31,19 +31,28 @@ const BillTable = () => {
     }
     const handleOpenModal = async (id) => {
         setOpenModal((openModal) => !openModal)
-        const resProduct = await getListProductByBillId(id)
-        const resBill = await getBillById(id)
-        if (resProduct) {
-            setProducts(resProduct.data)
+        const res = await getListProductByBillId(id)
+        if (res) {
+            setProducts(res.data.products)
+            setBill(res.data)
         }
     }
+    const dataBreadcumb = [
+        {
+            name: "Home",
+            path: "/admin/v1"
+        },
+        {
+            name: "Bills",
+            path: ""
+        }
+    ]
     return (
         <>
             <div className={`max-w-screen-xl mx-auto lg:max-w-7xl sm:pt-6 pt-6 ${openModal ? `overflow-hidden` : ''}`}>
-                <Breadcrumb/>
+                <Breadcrumb data={dataBreadcumb}/>
             </div>
-            <div
-                className={`${openModal ? 'overlay w-screen h-screen z-[1] fixed bg-zinc-700/75 top-0 left-0 duration-300 right-0 bottom-0' : ''}`}></div>
+            <div className={`${openModal ? 'overlay w-screen h-screen z-[1] fixed bg-zinc-700/75 top-0 left-0 duration-300 right-0 bottom-0' : ''}`}></div>
             <div className={`max-w-screen-xl mx-auto py-12 sm:py-12 lg:max-w-7xl`}>
                 <div className={`flex items-center justify-between mb-10`}>
                     <div className={`inline-block`}>
@@ -89,6 +98,9 @@ const BillTable = () => {
                                 Customer Email
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Created at
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Action
                             </th>
                         </tr>
@@ -107,7 +119,7 @@ const BillTable = () => {
                                             {bill.billCode}
                                         </td>
                                         <td className="px-6 py-4 text-lime-700 font-semibold">
-                                            ${bill.total}
+                                            ${bill.subtotal}
                                         </td>
                                         <th scope="row"
                                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -124,6 +136,10 @@ const BillTable = () => {
                                         <th scope="row"
                                             className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {bill.customerEmail}
+                                        </th>
+                                        <th scope="row"
+                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            {bill.createdAt ? moment(bill.createdAt).format("DD-MM-YYYY") : ""}
                                         </th>
                                         <td className={`px-6 py-4`}>
                                             <div onClick={() => handleOpenModal(bill.id)}

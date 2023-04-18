@@ -1,6 +1,7 @@
 package com.be.back_end.controllers;
 
 import com.be.back_end.dto.ResponseDTO;
+import com.be.back_end.dto.UpdateQuantity;
 import com.be.back_end.entities.ProductEntity;
 import com.be.back_end.services.eloquents.ProductImplService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -18,7 +20,7 @@ public class ProductController {
     private ProductImplService productImplService;
 
     @GetMapping(value = "")
-    public ResponseEntity<?> index(@RequestParam String keyword) {
+    public ResponseEntity<?> index(@RequestParam(value = "keyword", required = false) String keyword) {
         List<ProductEntity> ls = productImplService.getProductByKeyword(keyword);
         ResponseDTO responseDTO = new ResponseDTO();
         if (ls.size() == 0) {
@@ -80,5 +82,21 @@ public class ProductController {
             return ResponseEntity.ok(responseDTO);
         }
         return ResponseEntity.notFound().build();
+    }
+    @PostMapping(value = "update-quantity")
+    public ResponseEntity<?> updateQuantity(@RequestParam int id, @RequestBody UpdateQuantity request) {
+        ResponseDTO response = new ResponseDTO();
+        boolean check = productImplService.updateQuantity(request.getQuantity(), request.getId());
+        if (check) {
+            response.setCode("200");
+            response.setStatus("SUCCESS");
+            response.setMessage("Update product successfully");
+        } else {
+            response.setCode("500");
+            response.setStatus("ERROR");
+            response.setMessage("Some thing wrong !!!");
+        }
+
+        return ResponseEntity.ok(response);
     }
 }

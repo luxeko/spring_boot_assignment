@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -26,8 +27,8 @@ public class BillImplService implements IBillService {
     }
 
     @Override
-    public Set<ProductEntity> getProductByBillId(int id) {
-        return billRepository.findProductByBillId(id);
+    public Optional<BillEntity> getProductByBillId(int id) {
+        return billRepository.findById(id);
     }
 
     @Override

@@ -29,14 +29,18 @@ public class BillEntity {
     private String billCode;
     @Basic
     @Column(name = "total")
-    private Double total;
+    private int total;
+    @Basic
+    @Column(name = "subtotal")
+    private Double subtotal;
     @Basic
     @Column(name = "created_at")
     private Date createdAt;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "bill_products", joinColumns = @JoinColumn(name = "bill_id"), inverseJoinColumns =
-    @JoinColumn(name = "product_id"))
+    @JoinTable(name = "bill_products",
+            joinColumns = @JoinColumn(name = "bill_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<ProductEntity> products = new HashSet<>();
 
     public BillEntity() {
@@ -98,12 +102,20 @@ public class BillEntity {
         this.billCode = billCode;
     }
 
-    public Double getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(Double total) {
+    public void setTotal(int total) {
         this.total = total;
+    }
+
+    public Double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(Double subtotal) {
+        this.subtotal = subtotal;
     }
 
     public Date getCreatedAt() {

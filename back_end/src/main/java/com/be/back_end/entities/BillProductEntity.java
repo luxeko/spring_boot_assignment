@@ -16,6 +16,9 @@ public class BillProductEntity {
     @Basic
     @Column(name = "bill_id")
     private int billId;
+    @Basic
+    @Column(name = "quantity_order")
+    private int quantityOrder;
 //    @ManyToOne
 //    @JoinColumn(name = "product_id", referencedColumnName = "id")
 //    private ProductEntity productsByProductId;
@@ -61,5 +64,13 @@ public class BillProductEntity {
 
     public void setBillId(int billId) {
         this.billId = billId;
+    }
+
+    public int getQuantityOrder() {
+        return quantityOrder;
+    }
+
+    public void setQuantityOrder(int quantityOrder) {
+        this.quantityOrder = quantityOrder;
     }
 }

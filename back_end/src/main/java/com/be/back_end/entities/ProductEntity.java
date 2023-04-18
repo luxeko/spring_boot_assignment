@@ -1,5 +1,6 @@
 package com.be.back_end.entities;
 
+import org.hibernate.annotations.Formula;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;

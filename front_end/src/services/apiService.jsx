@@ -20,24 +20,32 @@ const postCreateProduct = (productCode, productName, price, quantity, descriptio
         "createdAt": createdAt
     })
 }
-const postCreateBill = (customerName, customerAddress, customerPhone, customerEmail, total, billCode, createdAt) => {
+const postCreateBill = (customerName, customerAddress, customerPhone, customerEmail, total, subtotal, billCode, createdAt) => {
     const data = {
         "id": "",
         "customerName": customerName,
         "customerAddress": customerAddress,
         "customerPhone": customerPhone,
         "customerEmail": customerEmail,
-        "total": +total,
+        "total": total,
+        "subtotal": +subtotal,
         "billCode": billCode,
         "createdAt": createdAt
     }
     return instance.post(`bills`, data)
 }
-const postCreateBillProducts = (billId, productId) => {
+const postCreateBillProducts = (billId, productId, quantity_order) => {
     return instance.post(`/bills/bill-products`, {
         "id": "",
         "productId": productId,
-        "billId": billId
+        "billId": billId,
+        "quantityOrder": quantity_order
+    })
+}
+const postUpdateQuantityProductAfterPurchase = (newQuantity, productId) => {
+    return instance.post(`/products/update-quantity?id=${productId}`, {
+        "id": productId,
+        "quantity": newQuantity
     })
 }
 const putUpdateProduct = (id, productCode, productName, price, quantity, description, createdAt) => {
@@ -59,9 +67,6 @@ const getListBill = (keyword) => {
 const getListProductByBillId = (id) => {
     return instance.get(`bills/${id}`)
 }
-const getBillById = (id) => {
-
-}
 export {
     getListProduct,
     getProductById,
@@ -70,7 +75,7 @@ export {
     deleteProduct,
     getListBill,
     getListProductByBillId,
-    getBillById,
     postCreateBill,
-    postCreateBillProducts
+    postCreateBillProducts,
+    postUpdateQuantityProductAfterPurchase
 }

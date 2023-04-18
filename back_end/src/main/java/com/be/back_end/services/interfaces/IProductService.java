@@ -13,4 +13,5 @@ public interface IProductService {
     public void saveProduct(ProductEntity product);
 
     public void deleteProduct(ProductEntity product);
+    public boolean updateQuantity(int quantity, int id);
 }

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import Breadcrumb from "../../../components/Breadcrumb.jsx";
+import Breadcrumb from "../../components/Breadcrumb.jsx";
 import {HiOutlineLocationMarker} from "react-icons/hi"
 import {RiImageFill} from "react-icons/ri"
 import {MdAlternateEmail} from "react-icons/md"
 import moment from "moment";
-import {getProductById, postCreateProduct, putUpdateProduct} from "../../../services/apiService.jsx";
+import {getProductById, postCreateProduct, putUpdateProduct} from "../../services/apiService.jsx";
 import {useLocation, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
 
@@ -60,10 +60,24 @@ const ProductForm = () => {
             navigate(`/admin/v1`)
         }
     }
+    const dataBreadcumb = [
+        {
+            name: "Home",
+            path: "/admin/v1"
+        },
+        {
+            name: "Products",
+            path: "/admin/v1"
+        },
+        {
+            name: productId ? "Edit product" : "Create product",
+            path: ""
+        }
+    ]
     return (
         <>
             <div className={`max-w-screen-xl mx-auto lg:max-w-7xl sm:pt-6 pt-6`}>
-                <Breadcrumb/>
+                <Breadcrumb data={dataBreadcumb}/>
                 <h1 className={`font-semibold text-3xl sm:pt-6 pt-6`}>{productId ? 'Edit product' : 'Create product'}</h1>
             </div>
             <div className={`max-w-screen-xl mx-auto py-12 sm:py-12 lg:max-w-7xl`}>
