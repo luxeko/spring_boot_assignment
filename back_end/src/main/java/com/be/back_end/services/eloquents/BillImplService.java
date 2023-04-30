@@ -2,7 +2,6 @@ package com.be.back_end.services.eloquents;
 
 import com.be.back_end.entities.BillEntity;
 import com.be.back_end.entities.BillProductEntity;
-import com.be.back_end.entities.ProductEntity;
 import com.be.back_end.repositories.BillProductRepository;
 import com.be.back_end.repositories.BillRepository;
 import com.be.back_end.services.interfaces.IBillService;
@@ -12,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 @Transactional

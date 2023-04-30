@@ -57,6 +57,7 @@ const ProductList = (props) => {
                 <Breadcrumb data={dataBreadcumb}/>
                 <h1 className={`font-semibold text-3xl sm:pt-6 pt-6`}>List product</h1>
             </div>
+            <img src={`https://eprojectsem4.blob.core.windows.net/coach/lazycat_code-01.png`}/>
             <div className="max-w-screen-xl mx-auto py-16 sm:py-24 lg:max-w-7xl">
                 <h2 className="sr-only">Products</h2>
                 <div
@@ -68,7 +69,6 @@ const ProductList = (props) => {
                                     className={`absolute top-2 right-2 bg-dangerColor-default_2 text-white font-semibold py-1 px-2 rounded-lg z-10 capitalize  italic`}>sold
                                     out</div> : <></>
                             }
-
                             <div className={product.quantity <= 0 ? 'opacity-50' : ''}>
                                 <div
                                     className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">

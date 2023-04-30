@@ -4,7 +4,6 @@ import com.be.back_end.dto.ProductThumbnailDTO;
 import com.be.back_end.dto.ResponseDTO;
 import com.be.back_end.dto.UpdateQuantity;
 import com.be.back_end.entities.ProductEntity;
-import com.be.back_end.entities.ProductThumbnailsEntity;
 import com.be.back_end.repositories.ProductThumbnailRepository;
 import com.be.back_end.services.eloquents.ProductImplService;
 import com.be.back_end.services.eloquents.ProductThumbnailImplService;
