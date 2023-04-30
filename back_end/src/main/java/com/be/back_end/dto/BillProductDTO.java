@@ -6,16 +6,18 @@ public class BillProductDTO {
     private String productName;
     private Double price;
     private int quantityOrder;
+    private String productImage;
 
     public BillProductDTO() {
     }
 
-    public BillProductDTO(int id, String productCode, String productName, Double price, int quantityOrder) {
+    public BillProductDTO(int id, String productCode, String productName, String productImage, Double price, int quantityOrder) {
         this.id = id;
         this.productCode = productCode;
         this.productName = productName;
         this.price = price;
         this.quantityOrder = quantityOrder;
+        this.productImage = productImage;
     }
 
     public int getId() {
@@ -56,5 +58,13 @@ public class BillProductDTO {
 
     public void setQuantityOrder(int quantityOrder) {
         this.quantityOrder = quantityOrder;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 }

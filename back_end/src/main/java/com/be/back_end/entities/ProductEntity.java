@@ -31,9 +31,14 @@ public class ProductEntity {
     private String description;
     @Basic
     @Column(name = "created_at")
+    private Date createdAt;
+
+    @Basic
+    @Column(name = "product_image")
+    private String productImage;
+
 //    @Temporal(TemporalType.TIMESTAMP)
 //    @DateTimeFormat(pattern = "yyyy-MM-dd H:m:s")
-    private Date createdAt;
 
     public ProductEntity() {
     }
@@ -92,6 +97,14 @@ public class ProductEntity {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getProductImage() {
+        return productImage;
+    }
+
+    public void setProductImage(String productImage) {
+        this.productImage = productImage;
     }
 
     @Override

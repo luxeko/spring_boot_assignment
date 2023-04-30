@@ -4,7 +4,10 @@ const ProductPage = lazy(() => import("../pages/customer/productList.jsx"))
 const ProductTable = lazy(() => import("../pages/admin/productTable.jsx"))
 const BillTable = lazy(() => import("../pages/admin/billTable.jsx"))
 const ProductForm = lazy(() => import("../pages/admin/productForm.jsx"))
-const CheckoutPage = lazy(() => import("../pages/customer/checkout.jsx"))
+// const CheckoutPage = lazy(() => import("../pages/customer/checkout.jsx"))
+const CheckoutPage = lazy(() =>  new Promise(resolve => {
+    setTimeout(() => resolve(import("../pages/customer/checkout.jsx")), 1000);
+}))
 
 export const listRouterCustomer = [
     {
@@ -31,13 +34,13 @@ export const listRouterAdmin = [
     {
         path: "products/create",
         page: ProductForm,
-        index: true,
+        index: false,
         isPublic: true,
     },
     {
         path: "products/edit",
         page: ProductForm,
-        index: true,
+        index: false,
         isPublic: true,
     },
     {

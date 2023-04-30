@@ -49,7 +49,7 @@ const BillTable = () => {
     ]
     return (
         <>
-            <div className={`max-w-screen-xl mx-auto lg:max-w-7xl sm:pt-6 pt-6 ${openModal ? `overflow-hidden` : ''}`}>
+            <div className={`max-w-screen-xl mx-auto lg:max-w-7xl sm:pt-6 pt-6`}>
                 <Breadcrumb data={dataBreadcumb}/>
             </div>
             <div className={`${openModal ? 'overlay w-screen h-screen z-[1] fixed bg-zinc-700/75 top-0 left-0 duration-300 right-0 bottom-0' : ''}`}></div>

@@ -10,5 +10,5 @@ public interface IProductThumbnailService {
     public String store(MultipartFile file) throws IOException;
 
     public Stream<ProductThumbnailsEntity> getAllFiles();
-    public byte[] downloadThumbnail(String thumbnailName);
+    public byte[] downloadThumbnail(String name);
 }

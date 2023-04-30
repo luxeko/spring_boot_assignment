@@ -1,6 +1,6 @@
 import React, {Suspense} from 'react';
 import PrivateRouter from "./privateRouter.jsx";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route} from "react-router-dom";
 
 const RenderRouter = (routers, setOpen) => {
     return (

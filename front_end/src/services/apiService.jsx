@@ -1,5 +1,4 @@
 import instance from "../configs/axiosConfig.jsx";
-import {data} from "autoprefixer";
 
 const getListProduct = (keyword) => {
     return instance.get(`products?keyword=${keyword}`)

@@ -59,7 +59,7 @@ public class BillController {
             if (op.isPresent()) {
                 ProductEntity product = op.get();
                 // gán các thuộc tính cần thiết từ product vào BillProductDTO
-                BillProductDTO billProductDTO = new BillProductDTO(product.getId(), product.getProductCode(), product.getProductName(), product.getPrice(), bp.getQuantityOrder());
+                BillProductDTO billProductDTO = new BillProductDTO(product.getId(), product.getProductCode(), product.getProductName(), product.getProductImage(), product.getPrice(), bp.getQuantityOrder());
 
                 // mỗi lần tạo xong 1 BillProductDTO thì thêm vào listProduct
                 listProduct.add(billProductDTO);

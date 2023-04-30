@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -28,8 +29,7 @@ public class ProductController {
     private ProductImplService productImplService;
     @Autowired
     private ProductThumbnailImplService productThumbnailImplService;
-    @Autowired
-    private ProductThumbnailRepository productThumbnailRepository;
+
 
     @GetMapping(value = "")
     public ResponseEntity<?> index(@RequestParam(value = "keyword", required = false) String keyword) {
@@ -79,7 +79,7 @@ public class ProductController {
         responseDTO.setStatus("SUCCESS");
         responseDTO.setMessage("Create product successfully");
         responseDTO.setData(product);
-     
+
         return ResponseEntity.ok(responseDTO);
     }
     @PutMapping(value = "")
@@ -117,11 +117,16 @@ public class ProductController {
     public ResponseEntity<?> uploadThumbnail(@RequestParam("thumbnail") MultipartFile file) {
         ResponseDTO responseDTO = new ResponseDTO();
         try {
+            String thumbnailDownloadUri = ServletUriComponentsBuilder
+                    .fromCurrentContextPath()
+                    .path("/api/products/thumbnail/")
+                    .path(Objects.requireNonNull(file.getOriginalFilename()))
+                    .toUriString();
             String mess = productThumbnailImplService.store(file);
             responseDTO.setCode("200");
             responseDTO.setStatus("SUCCESS");
             responseDTO.setMessage(mess);
-            responseDTO.setData(null);
+            responseDTO.setData(thumbnailDownloadUri);
             return ResponseEntity.ok(responseDTO);
         } catch (Exception e) {
             responseDTO.setCode("404");
@@ -156,9 +161,7 @@ public class ProductController {
     }
     @GetMapping(value = "thumbnail/{name}")
     public ResponseEntity<?> getThumbnail(@PathVariable String name) {
-        ResponseDTO responseDTO = new ResponseDTO();
         byte[] thumbnail = productThumbnailImplService.downloadThumbnail(name);
-
         return ResponseEntity.ok().contentType(MediaType.valueOf("image/png")).body(thumbnail);
     }
 }
